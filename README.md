@@ -1,4 +1,4 @@
-# Self-supervised Learning for Label-Efficient Sleep Stage Classification: A Comprehensive Evaluation [[Paper]()]
+# Self-supervised Learning for Label-Efficient Sleep Stage Classification: A Comprehensive Evaluation [[Paper](https://arxiv.org/abs/2210.06286)]
 ### *by: Emadeldeen Eldele, Mohamed Ragab, Zhenghua Chen, Min Wu, Chee Keong Kwoh, and Xiaoli Li.*
 
 ## Abstract:
@@ -20,7 +20,7 @@ We use the same preprocessing in [TS-TCC](https://github.com/emadeldeen24/TS-TCC
 
 To add a new dataset, include it in the "data" folder, add it to the `configs/hparam.py`
 and `configs.data_configs.py` files. 
-Also add a corresponding definition in the [trainer file]().
+Also add a corresponding definition in the [trainer file](https://github.com/emadeldeen24/eval_ssl_ssc/blob/aba1d27fb0694146b3461b114874f5a5639cdc1b/trainer.py#L59).
 
 ## Self-supervised learning Algorithms
 We used four SSL algorithms:
@@ -57,7 +57,7 @@ name and use any other description for yourself (e.g., "ft_1per_labels")</li>
 - The experiments of each dataset will be in a separate folder.
 - Each run_description will be in a separate folder.
 - For the K-fold settings, the overall results will be calculated after the last fold.
-- Also, change [this line]() if you used different k-fold settings.
+- Also, change ["4"](https://github.com/emadeldeen24/eval_ssl_ssc/blob/aba1d27fb0694146b3461b114874f5a5639cdc1b/trainer.py#L171) if you used different k-fold settings.
 
 
 ### Run the code:
@@ -65,6 +65,16 @@ either use `single_run.sh` to run a specific fold
 or use `multiple_runs.sh` for multiple folds/multiple SSC models.
 
 
+### Citation:
+If you found this work useful for you, please consider citing it.
+```
+@article{emadeldeen2022eval,
+  title={Self-supervised Learning for Label-Efficient Sleep Stage Classification: A Comprehensive Evaluation},
+  author={Eldele, Emadeldeen and Ragab, Mohamed and Chen, Zhenghua and Wu, Min and Kwoh, Chee Keong and Li, Xiaoli},
+  journal={arXiv preprint arXiv:2210.06286},
+  year={2022}
+}
+```
 
 
 ## Contact
