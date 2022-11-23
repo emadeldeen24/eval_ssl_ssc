@@ -54,19 +54,12 @@ class cnn1d_fe(nn.Module):
             nn.ReLU(),
             nn.MaxPool1d(kernel_size=2, stride=2, padding=1),
         )
-        self.conv_block4 = nn.Sequential(
-            nn.Conv1d(configs.final_out_channels, configs.final_out_channels, kernel_size=8, stride=1, bias=False,
-                      padding=4),
-            nn.BatchNorm1d(configs.final_out_channels),
-            nn.ReLU(),
-            # nn.MaxPool1d(kernel_size=2, stride=2, padding=1),
-        )
+
 
     def forward(self, x_in):
         x = self.conv_block1(x_in)
         x = self.conv_block2(x)
         x = self.conv_block3(x)
-        x = self.conv_block4(x)
         # print(x.shape)
         return x
 
