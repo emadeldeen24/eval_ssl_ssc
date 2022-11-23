@@ -143,7 +143,7 @@ def copy_Files(destination):
     copy("dataloader/ts_augmentations.py", os.path.join(destination_dir, "ts_augmentations.py"))
     copy(f"models/models.py", os.path.join(destination_dir, f"models.py"))
     copy(f"models/loss.py", os.path.join(destination_dir, f"loss.py"))
-    copy("algorithms/algorithms.py", os.path.join(destination_dir, "algorithms.py"))
+    copy("algorithms.py", os.path.join(destination_dir, "algorithms.py"))
     copy(f"configs/data_model_configs.py", os.path.join(destination_dir, f"data_model_configs.py"))
     copy(f"configs/hparams.py", os.path.join(destination_dir, f"hparams.py"))
     copy(f"trainer.py", os.path.join(destination_dir, f"trainer.py"))
