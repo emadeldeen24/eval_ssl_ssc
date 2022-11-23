@@ -144,7 +144,7 @@ def copy_Files(destination):
     copy(f"models/models.py", os.path.join(destination_dir, f"models.py"))
     copy(f"models/loss.py", os.path.join(destination_dir, f"loss.py"))
     copy("algorithms.py", os.path.join(destination_dir, "algorithms.py"))
-    copy(f"configs/data_model_configs.py", os.path.join(destination_dir, f"data_model_configs.py"))
+    copy(f"configs/data_configs.py", os.path.join(destination_dir, f"data_configs.py"))
     copy(f"configs/hparams.py", os.path.join(destination_dir, f"hparams.py"))
     copy(f"trainer.py", os.path.join(destination_dir, f"trainer.py"))
     copy("utils.py", os.path.join(destination_dir, "utils.py"))
