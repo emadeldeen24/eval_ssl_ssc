@@ -18,6 +18,8 @@ We used three public datasets in this study:
 
 We use the same preprocessing in [TS-TCC](https://github.com/emadeldeen24/TS-TCC).
 
+To split the data into k-fold cross-validation and get the few label percentages, use `split_k-fold_and_few_labels.py` file.
+
 To add a new dataset, include it in the "data" folder, add it to the `configs/hparam.py`
 and `configs.data_configs.py` files. 
 Also add a corresponding definition in the [trainer file](https://github.com/emadeldeen24/eval_ssl_ssc/blob/aba1d27fb0694146b3461b114874f5a5639cdc1b/trainer.py#L59).
