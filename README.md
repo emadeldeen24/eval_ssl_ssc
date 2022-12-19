@@ -1,4 +1,4 @@
-# Self-supervised Learning for Label-Efficient Sleep Stage Classification: A Comprehensive Evaluation [[Paper](https://arxiv.org/abs/2210.06286)]
+# Self-supervised Learning for Label-Efficient Sleep Stage Classification: A Comprehensive Evaluation [[Paper](https://arxiv.org/abs/2210.06286)][[Cite](#citation)]
 ### *by: Emadeldeen Eldele, Mohamed Ragab, Zhenghua Chen, Min Wu, Chee Keong Kwoh, and Xiaoli Li.*
 
 ## Abstract:
