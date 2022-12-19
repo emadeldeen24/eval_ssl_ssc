@@ -16,7 +16,7 @@ We used three public datasets in this study:
 - SHHS
 - ISRUC
 
-We use the same preprocessing in [TS-TCC](https://github.com/emadeldeen24/TS-TCC).
+We use the same preprocessing in [TS-TCC](https://github.com/emadeldeen24/TS-TCC/blob/main/data_preprocessing/sleep-edf/preprocess_sleep_edf.py).
 
 To split the data into k-fold cross-validation and get the few label percentages, use `split_k-fold_and_few_labels.py` file.
 
