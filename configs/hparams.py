@@ -18,12 +18,12 @@ class simclr():
         self.alg_hparams_edf = {
             'dsn': {'features_len': 41 * 128, 'clf':1024},
             'attnsleep': {'features_len': 30 * 80, 'clf': 30 * 80},
-            'cnn1d': {'features_len': 65 * 128, 'clf': 66 * 128},
+            'cnn1d': {'features_len': 65 * 128, 'clf': 65 * 128},
         }
         self.alg_hparams_shhs = {
             'dsn': {'features_len': 51 * 128, 'clf': 1024},
             'attnsleep': {'features_len': 99 * 30, 'clf': 99 * 30},
-            'cnn1d': {'features_len': 80 * 128,'clf': 81 * 128 },
+            'cnn1d': {'features_len': 80 * 128,'clf': 80 * 128 },
         }
         self.alg_hparams_isruc = {
             'dsn': {'features_len': 80 * 128, 'clf': 1024},
@@ -46,12 +46,12 @@ class ts_tcc():
         self.alg_hparams_edf = {
             'dsn': {'num_channels': 128, 'features_len': 41 * 128, 'clf': 1024},
             'attnsleep':    {'num_channels': 30,    'features_len': 80 * 30, 'clf': 80 * 30},
-            'cnn1d':        {'num_channels': 128,   'features_len': 65 * 128, 'clf': 66 * 128},
+            'cnn1d':        {'num_channels': 128,   'features_len': 65 * 128, 'clf': 65 * 128},
         }
         self.alg_hparams_shhs = {
             'dsn': {'num_channels': 128, 'features_len': 51 * 128, 'clf': 1024},
             'attnsleep':    {'num_channels': 30,    'features_len': 99 * 30, 'clf': 99 * 30},
-            'cnn1d':        {'num_channels': 128,   'features_len': 80 * 128, 'clf': 81 * 128},
+            'cnn1d':        {'num_channels': 128,   'features_len': 80 * 128, 'clf': 80 * 128},
         }
         self.alg_hparams_isruc = {
             'dsn': {'num_channels': 128,'features_len': 80 * 128, 'clf': 1024},
@@ -74,12 +74,12 @@ class cpc():
         self.alg_hparams_edf = {
             'dsn': {'num_channels': 128, 'features_len': 41 * 128, 'clf': 1024},
             'attnsleep':    {'num_channels': 30,    'features_len': 80 * 30, 'clf': 80 * 30},
-            'cnn1d':        {'num_channels': 128,   'features_len': 65 * 128, 'clf': 66 * 128},
+            'cnn1d':        {'num_channels': 128,   'features_len': 65 * 128, 'clf': 65 * 128},
         }
         self.alg_hparams_shhs = {
             'dsn': {'num_channels': 128, 'features_len': 51 * 128, 'clf': 1024},
             'attnsleep':    {'num_channels': 30,    'features_len': 99 * 30, 'clf': 99 * 30},
-            'cnn1d':        {'num_channels': 128,   'features_len': 80 * 128, 'clf': 81 * 128},
+            'cnn1d':        {'num_channels': 128,   'features_len': 80 * 128, 'clf': 80 * 128},
         }
         self.alg_hparams_isruc = {
             'dsn': {'num_channels': 128,'features_len': 80 * 128, 'clf': 1024},
@@ -100,12 +100,12 @@ class supervised():
         self.alg_hparams_edf = {
             'dsn': {'features_len': 41 * 128, 'clf':1024},
             'attnsleep': {'features_len': 30 * 80, 'clf': 2400},
-            'cnn1d': {'features_len': 65 * 128, 'clf':66 * 128}
+            'cnn1d': {'features_len': 65 * 128, 'clf':65 * 128}
         }
         self.alg_hparams_shhs = {
             'dsn': {'features_len': 51 * 128, 'clf': 1024},
             'attnsleep': {'features_len': 99 * 30, 'clf':2970},
-            'cnn1d': {'features_len': 80 * 128, 'clf':81 * 128}
+            'cnn1d': {'features_len': 80 * 128, 'clf':80 * 128}
         }
         self.alg_hparams_isruc = {
             'dsn': {'features_len': 80 * 128, 'clf': 1024},
