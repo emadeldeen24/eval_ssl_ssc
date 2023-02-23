@@ -70,11 +70,15 @@ or use `multiple_runs.sh` for multiple folds/multiple SSC models.
 ### Citation:
 If you found this work useful for you, please consider citing it.
 ```
-@article{emadeldeen2022eval,
-  title={Self-supervised Learning for Label-Efficient Sleep Stage Classification: A Comprehensive Evaluation},
-  author={Eldele, Emadeldeen and Ragab, Mohamed and Chen, Zhenghua and Wu, Min and Kwoh, Chee Keong and Li, Xiaoli},
-  journal={arXiv preprint arXiv:2210.06286},
-  year={2022}
+@ARTICLE{emadeldeen2023eval,
+  author={Eldele, Emadeldeen and Ragab, Mohamed and Chen, Zhenghua and Wu, Min and Kwoh, Chee-Keong and Li, Xiaoli},
+  journal={IEEE Transactions on Neural Systems and Rehabilitation Engineering}, 
+  title={Self-Supervised Learning for Label- Efficient Sleep Stage Classification: A Comprehensive Evaluation}, 
+  year={2023},
+  volume={31},
+  number={},
+  pages={1333-1342},
+  doi={10.1109/TNSRE.2023.3245285}
 }
 ```
 
