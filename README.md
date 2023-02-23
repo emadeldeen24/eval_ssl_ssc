@@ -1,6 +1,8 @@
 # Self-supervised Learning for Label-Efficient Sleep Stage Classification: A Comprehensive Evaluation [[Paper](https://ieeexplore.ieee.org/document/10044720/)][[Cite](#citation)]
 ### *by: Emadeldeen Eldele, Mohamed Ragab, Zhenghua Chen, Min Wu, Chee Keong Kwoh, and Xiaoli Li.*
 
+### This work has been accepted for publication in the [IEEE Transactions on Neural Systems and Rehabilitation Engineering (TNSRE)](https://ieeexplore.ieee.org/document/10044720/).
+
 ## Abstract:
 The past few years have witnessed a remarkable advance in deep learning for EEG-based sleep stage classification (SSC). 
 However, the success of these models is attributed to possessing a massive amount of _labeled_ data for training, limiting their applicability in real-world scenarios. 
