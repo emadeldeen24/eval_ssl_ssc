@@ -208,7 +208,10 @@ class trainer(object):
 
     def get_configs(self):
         dataset_class = get_dataset_class(self.dataset)
-        hparams_class = get_hparams_class(self.ssl_method)
+        if self.train_mode == "ssl":
+            hparams_class = get_hparams_class(self.ssl_method)
+        else:
+            hparams_class = get_hparams_class("supervised")
         return dataset_class(), hparams_class()
 
     def load_data(self, data_type):
