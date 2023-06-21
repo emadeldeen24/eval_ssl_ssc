@@ -80,7 +80,7 @@ class attnsleep_fe(nn.Module):
         super(attnsleep_fe, self).__init__()
 
         self.features1 = nn.Sequential(
-            nn.Conv1d(1, 64, kernel_size=50, stride=6, bias=False, padding=24),
+            nn.Conv1d(configs.input_channels, 64, kernel_size=50, stride=6, bias=False, padding=24),
             nn.BatchNorm1d(64),
             nn.GELU(),
             nn.MaxPool1d(kernel_size=8, stride=2, padding=4),
@@ -98,7 +98,7 @@ class attnsleep_fe(nn.Module):
         )
 
         self.features2 = nn.Sequential(
-            nn.Conv1d(1, 64, kernel_size=400, stride=50, bias=False, padding=200),
+            nn.Conv1d(configs.input_channels, 64, kernel_size=400, stride=50, bias=False, padding=200),
             nn.BatchNorm1d(64),
             nn.GELU(),
             nn.MaxPool1d(kernel_size=4, stride=2, padding=2),
@@ -177,10 +177,10 @@ class attnsleep_temporal(nn.Module):
 ##########################################################################################
 
 class dsn_fe(nn.Module):
-    def __init__(self, config):
+    def __init__(self, configs):
         super(dsn_fe, self).__init__()
         self.features_s = nn.Sequential(
-            nn.Conv1d(1, 64, 50, 6, padding=24),
+            nn.Conv1d(configs.input_channels, 64, 50, 6, padding=24),
             nn.BatchNorm1d(64),
             nn.ReLU(inplace=True),
             nn.MaxPool1d(kernel_size=8, stride=8, padding=4),
@@ -195,7 +195,7 @@ class dsn_fe(nn.Module):
             nn.MaxPool1d(kernel_size=2, stride=2, padding=1),
         )
         self.features_l = nn.Sequential(
-            nn.Conv1d(1, 64, 400, 50, padding=200),
+            nn.Conv1d(configs.input_channels, 64, 400, 50, padding=200),
             nn.BatchNorm1d(64),
             nn.ReLU(inplace=True),
             nn.MaxPool1d(kernel_size=4, stride=4, padding=2),
