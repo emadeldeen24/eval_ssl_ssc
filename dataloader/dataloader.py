@@ -37,12 +37,11 @@ class Load_Dataset(Dataset):
 
         self.num_channels = X_train.shape[1]
 
+        # Normalize data
         if normalize:
-            # Assume datashape: num_samples, num_channels, seq_length
-            data_mean = torch.FloatTensor(self.num_channels).fill_(0).tolist()  # assume min= number of channels
-            data_std = torch.FloatTensor(self.num_channels).fill_(1).tolist()  # assume min= number of channels
-            data_transform = transforms.Normalize(mean=data_mean, std=data_std)
-            self.transform = data_transform
+            data_mean = torch.mean(self.x_data, dim=(0, 2))
+            data_std = torch.std(self.x_data, dim=(0, 2))
+            self.transform = transforms.Normalize(mean=data_mean, std=data_std)
         else:
             self.transform = None
 
@@ -51,30 +50,36 @@ class Load_Dataset(Dataset):
         self.num_transformations = len(self.augmentation.split("_"))
 
     def __getitem__(self, index):
+        x = self.x_data[index]
+        if self.transform:
+            x = self.transform(self.x_data[index].reshape(self.num_channels, -1, 1)).reshape(self.x_data[index].shape)
+        y = self.y_data[index] if self.y_data is not None else None
+        # return x, y
+
         if self.train_mode == "ssl" and self.ssl_method in ["simclr", "ts_tcc", "cpc"]:
             if self.ssl_method == "ts_tcc":  # TS-TCC has its own augmentations
                 self.augmentation = "tsTcc_aug"
             elif self.ssl_method == "clsTran":
                 self.augmentation = "permute_timeShift_scale_noise"
-            transformed_samples = apply_transformation(self.x_data[index], self.augmentation)
+            transformed_samples = apply_transformation(x, self.augmentation)
             sample = {
                 'transformed_samples': transformed_samples,
-                'sample_ori': self.x_data[index].squeeze(-1)
+                'sample_ori': x.squeeze(-1)
             }
 
         elif self.train_mode == "ssl" and self.ssl_method == "clsTran":
-            transformed_samples = apply_transformation(self.x_data[index], self.augmentation)
+            transformed_samples = apply_transformation(x, self.augmentation)
             order = np.random.randint(self.num_transformations)
             transformed_sample = transformed_samples[order]
             sample = {
                 'transformed_samples': transformed_sample,
                 'aux_labels': int(order),
-                'sample_ori': self.x_data[index].squeeze(-1)
+                'sample_ori': x.squeeze(-1)
             }
         else:
             sample = {
-                'sample_ori': self.x_data[index].squeeze(-1),
-                'class_labels': int(self.y_data[index])
+                'sample_ori': x.squeeze(-1),
+                'class_labels': int(y)
             }
 
         return sample
@@ -87,8 +92,8 @@ def data_generator(data_path, data_type, fold_id, data_percentage, dataset_confi
                    augmentation, oversample):
     # original
     train_dataset = torch.load(
-        os.path.join(data_path, data_type, f"fold_{fold_id}", f"train_{fold_id}_{data_percentage}per.pt"))
-    val_dataset = torch.load(os.path.join(data_path, data_type, f"fold_{fold_id}", f"val_{fold_id}.pt"))
+        os.path.join(data_path, data_type, f"train_{fold_id}_{data_percentage}per.pt"))
+    val_dataset = torch.load(os.path.join(data_path, data_type, f"val_{fold_id}.pt"))
 
     # Loading datasets
     train_dataset = Load_Dataset(train_dataset, dataset_configs.normalize, train_mode, ssl_method, augmentation,
