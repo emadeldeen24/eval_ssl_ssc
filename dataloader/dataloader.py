@@ -10,43 +10,52 @@ from .ts_augmentations import apply_transformation
 
 class Load_Dataset(Dataset):
     # Initialize your data, download, etc.
-    def __init__(self, dataset, normalize, train_mode, ssl_method, augmentation, oversample=False):
+    def __init__(self, dataset, dataset_configs, train_mode, ssl_method, augmentation, oversample=False):
         super(Load_Dataset, self).__init__()
         self.train_mode = train_mode
         self.ssl_method = ssl_method
         self.augmentation = augmentation
+        self.num_channels = dataset_configs.input_channels
 
-        X_train = dataset["samples"]
-        y_train = dataset["labels"]
+        # Load samples
+        x_data = dataset["samples"]
+
+        # Load labels
+        y_data = dataset.get("labels")
+        if y_data is not None and isinstance(y_data, np.ndarray):
+            y_data = torch.from_numpy(y_data)
+
+        # Convert to torch tensor
+        if isinstance(x_data, np.ndarray):
+            x_data = torch.from_numpy(x_data)
+
+        # Check samples dimensions.
+        # The dimension of the data is expected to be (N, C, L)
+        # where N is the #samples, C: #channels, and L is the sequence length
+        if len(x_data.shape) == 2:
+            x_data = x_data.unsqueeze(1)
+        elif len(x_data.shape) == 3 and x_data.shape[1] != self.num_channels:
+            x_data = x_data.transpose(1, 2)
 
         if oversample and "ft" not in train_mode:  # if fine-tuning, it shouldn't be on oversampled data
-            X_train, y_train = get_balance_class_oversample(X_train, y_train)
+            x_data, y_data = get_balance_class_oversample(x_data, y_data)
 
-        if len(X_train.shape) < 3:
-            X_train = X_train.unsqueeze(2)
 
-        if isinstance(X_train, np.ndarray):
-            X_train = torch.from_numpy(X_train)
-            y_train = torch.from_numpy(y_train).long()
+        self.x_data = x_data
+        self.y_data = y_data
 
-        if X_train.shape.index(min(X_train.shape)) != 1:  # make sure the Channels in second dim
-            X_train = X_train.permute(0, 2, 1)
-
-        self.x_data = X_train
-        self.y_data = y_train
-
-        self.num_channels = X_train.shape[1]
 
         # Normalize data
-        if normalize:
+        if dataset_configs.normalize:
             data_mean = torch.mean(self.x_data, dim=(0, 2))
             data_std = torch.std(self.x_data, dim=(0, 2))
             self.transform = transforms.Normalize(mean=data_mean, std=data_std)
         else:
             self.transform = None
 
-        self.len = X_train.shape[0]
-
+        self.x_data = x_data.float()
+        self.y_data = y_data.long() if y_data is not None else None
+        self.len = x_data.shape[0]
         self.num_transformations = len(self.augmentation.split("_"))
 
     def __getitem__(self, index):
@@ -96,9 +105,9 @@ def data_generator(data_path, data_type, fold_id, data_percentage, dataset_confi
     val_dataset = torch.load(os.path.join(data_path, data_type, f"val_{fold_id}.pt"))
 
     # Loading datasets
-    train_dataset = Load_Dataset(train_dataset, dataset_configs.normalize, train_mode, ssl_method, augmentation,
+    train_dataset = Load_Dataset(train_dataset, dataset_configs, train_mode, ssl_method, augmentation,
                                  oversample)
-    val_dataset = Load_Dataset(val_dataset, dataset_configs.normalize, train_mode, ssl_method, augmentation, oversample)
+    val_dataset = Load_Dataset(val_dataset, dataset_configs, train_mode, ssl_method, augmentation, oversample)
 
     # Dataloaders
     batch_size = hparams["batch_size"]
