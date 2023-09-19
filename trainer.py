@@ -25,7 +25,7 @@ class trainer(object):
     def __init__(self, args):
         self.ssl_method = args.ssl_method
         self.train_mode = args.train_mode
-        if "supervised" in self.train_mode:
+        if "supervised" in self.train_mode or "ft" in self.train_mode::
             self.ssl_method = "supervised"
         self.sleep_model = args.sleep_model
         self.oversample = args.oversample
